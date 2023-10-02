@@ -1,4 +1,4 @@
--- mod-version:3 lite-xl 2.1
+-- mod-version:3
 local core = require "core"
 local config = require "core.config"
 local command = require "core.command"
@@ -28,7 +28,11 @@ end
 -- sometimes the autoreload plugin doesn't detect the file change so we
 -- need our own reload_doc function to reload document after formatting it
 local function reload_doc(doc)
-	local fp = io.open(doc.filename, "r")
+	local fp = io.open(doc.abs_filename, "r")
+	if not fp then
+		core.error("Could not open '%s' for formatting", doc.filename)
+		return
+	end
 	local text = fp:read("*a")
 	fp:close()
 
@@ -46,7 +50,7 @@ end
 -- to reload after formatting, set 'reload' to true
 local function format_current_doc(reload)
 	local current_doc = core.active_view.doc
-	if current_doc == nil then
+	if not current_doc or not current_doc.abs_filename then
 		core.error("no doc is open")
 		return
 	end
@@ -60,7 +64,7 @@ local function format_current_doc(reload)
 	core.log("formatting " .. current_doc.filename .. " with " .. formatter.name)
 
 	local args = table.concat(formatter.args or {}, " ")
-	local filename = system.absolute_path(current_doc.filename)
+	local filename = current_doc.abs_filename 
 	filename = "\"" .. filename .. "\"" -- add quotes to filename
 
 	local cmd = formatter.command:gsub("$FILENAME", filename) -- replace $FILENAME with filename
