@@ -16,6 +16,9 @@
 - [luaformatter](https://github.com/domluna/JuliaFormatter.jl)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
+- [shformat](https://github.com/mvdan/sh)
+- [styluaformat](https://github.com/JohnnyMorganz/StyLua)
+- [tsformat](https://github.com/vvakame/typescript-formatter)
 - [zigfmt](https://ziglang.org)
 
 ## Installation instructions
