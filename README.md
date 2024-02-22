@@ -10,7 +10,7 @@
 - [esformatter](https://github.com/millermedeiros/esformatter/)
 - [gdformat](https://github.com/Scony/godot-gdscript-toolkit)
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
-- [html-beautify](https://www.npmjs.com/package/js-beautify)
+- [html-beautify](https://www.npmjs.com/package/html-beautify)
 - [js-beautify](https://www.npmjs.com/package/js-beautify)
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
@@ -18,6 +18,7 @@
 - [rustfmt](https://github.com/rust-lang/rustfmt)
 - [shformat](https://github.com/mvdan/sh)
 - [styluaformat](https://github.com/JohnnyMorganz/StyLua)
+- [tidy](https://www.html-tidy.org/)
 - [tsformat](https://github.com/vvakame/typescript-formatter)
 - [zigfmt](https://ziglang.org)
 

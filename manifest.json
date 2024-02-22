@@ -1,0 +1,11 @@
+{
+  "addons": [
+    {
+      "id": "formatter",
+      "name": "Formatter",
+      "description": "Code formatter for various languages.",
+      "version": "0.4",
+      "mod_version": "3"
+    }
+  ]
+}
