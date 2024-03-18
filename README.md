@@ -14,6 +14,7 @@
 - [elm-format](https://github.com/avh4/elm-format)
 - [esformatter](https://github.com/millermedeiros/esformatter/)
 - [gdformat](https://github.com/Scony/godot-gdscript-toolkit)
+- [google-java-format](https://github.com/google/google-java-format)
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 - [html-beautify](https://www.npmjs.com/package/html-beautify)
 - [isort python formatter](https://pypi.org/project/isort/)
