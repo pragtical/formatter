@@ -6,6 +6,7 @@
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [cljfmt](https://github.com/weavejester/cljfmt)
 - [cmake-format](https://github.com/cheshirekow/cmake_format)
+- [crystal](https://man.archlinux.org/man/crystal.1.en)
 - [css-beautify](https://www.npmjs.com/package/js-beautify)
 - [dartformat](https://dart.dev/tools/dart-format)
 - [dfmt](https://github.com/dlang-community/dfmt)
