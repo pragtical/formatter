@@ -4,6 +4,7 @@
 - [autoflake python formatter](https://pypi.org/project/autoflake/)
 - [black python formatter](https://pypi.org/project/black/)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+- [cljfmt](https://github.com/weavejester/cljfmt)
 - [cmake-format](https://github.com/cheshirekow/cmake_format)
 - [css-beautify](https://www.npmjs.com/package/js-beautify)
 - [dartformat](https://dart.dev/tools/dart-format)
