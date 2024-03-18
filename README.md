@@ -11,6 +11,7 @@
 - [dartformat](https://dart.dev/tools/dart-format)
 - [dfmt](https://github.com/dlang-community/dfmt)
 - [elixir](https://hexdocs.pm/mix/main/Mix.Tasks.Format.html)
+- [elm-format](https://github.com/avh4/elm-format)
 - [esformatter](https://github.com/millermedeiros/esformatter/)
 - [gdformat](https://github.com/Scony/godot-gdscript-toolkit)
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
