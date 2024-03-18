@@ -20,6 +20,7 @@
 - [js-beautify](https://www.npmjs.com/package/js-beautify)
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
+- [ormolu](https://github.com/tweag/ormolu)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
 - [shformat](https://github.com/mvdan/sh)
