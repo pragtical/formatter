@@ -28,6 +28,7 @@
 - [styluaformat](https://github.com/JohnnyMorganz/StyLua)
 - [tidy](https://www.html-tidy.org/)
 - [tsformat](https://github.com/vvakame/typescript-formatter)
+- [vfmt](https://github.com/vlang/v)
 - [zigfmt](https://ziglang.org)
 
 ## Installation instructions
