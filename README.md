@@ -22,6 +22,7 @@
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
 - [ormolu](https://github.com/tweag/ormolu)
+- [perltidy](https://github.com/perltidy/perltidy)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rubocop](https://github.com/rubocop/rubocop)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
