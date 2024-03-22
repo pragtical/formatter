@@ -21,6 +21,7 @@
 - [js-beautify](https://www.npmjs.com/package/js-beautify)
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
+- [ocp-indent](https://github.com/OCamlPro/ocp-indent)
 - [ormolu](https://github.com/tweag/ormolu)
 - [perltidy](https://github.com/perltidy/perltidy)
 - [qmlformat](https://github.com/qt/qtdeclarative)
