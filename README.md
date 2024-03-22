@@ -23,6 +23,7 @@
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
 - [ormolu](https://github.com/tweag/ormolu)
 - [qmlformat](https://github.com/qt/qtdeclarative)
+- [rubocop](https://github.com/rubocop/rubocop)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
 - [shformat](https://github.com/mvdan/sh)
 - [sql-formatter](https://github.com/sql-formatter-org/sql-formatter)
