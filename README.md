@@ -25,6 +25,7 @@
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
 - [shformat](https://github.com/mvdan/sh)
+- [sql-formatter](https://github.com/sql-formatter-org/sql-formatter)
 - [styluaformat](https://github.com/JohnnyMorganz/StyLua)
 - [tidy](https://www.html-tidy.org/)
 - [tsformat](https://github.com/vvakame/typescript-formatter)
