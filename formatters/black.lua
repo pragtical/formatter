@@ -2,6 +2,6 @@
 
 return {
   label = "Black",
-  file_patterns = {"%.py$"},
+  file_patterns = {"%.pyi?$"},
   command = {"black", "$ARGS", "$FILENAME"}
 }
