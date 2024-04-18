@@ -1,6 +1,7 @@
 # Formatters for [Pragtical](https://github.com/pragtical/pragtical)
 
 ## List of formatters (Keep alphabetical)
+- [autoflake python formatter](https://pypi.org/project/autoflake/)
 - [black python formatter](https://pypi.org/project/black/)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - [cmake-format](https://github.com/cheshirekow/cmake_format)
@@ -11,6 +12,7 @@
 - [gdformat](https://github.com/Scony/godot-gdscript-toolkit)
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 - [html-beautify](https://www.npmjs.com/package/html-beautify)
+- [isort python formatter](https://pypi.org/project/isort/)
 - [js-beautify](https://www.npmjs.com/package/js-beautify)
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
