@@ -4,9 +4,11 @@ local config = require "core.config"
 local command = require "core.command"
 local common = require "core.common"
 local Doc = require "core.doc"
+local DocView = require "core.docview"
 local keymap = require "core.keymap"
 
 ---@class config.plugins.formatter
+---Automatically format documents after each save.
 ---@field format_on_save boolean
 config.plugins.formatter = common.merge({
   format_on_save = false,
@@ -40,7 +42,7 @@ local function script_path()
    return str:match("(.*"..PATHSEP..")")
 end
 
----Corrects the path set for git or fossil commands when using the settings ui.
+---Corrects the path of commands when using the settings ui.
 ---@param path string
 ---@return string path
 local function config_fix_path(path)
@@ -120,6 +122,7 @@ end
 
 -- sometimes the autoreload plugin doesn't detect the file change so we
 -- need our own reload_doc function to reload document after formatting it
+---@param doc core.doc
 local function reload_doc(doc)
   local fp = io.open(doc.abs_filename, "r")
   if not fp then
@@ -136,7 +139,9 @@ local function reload_doc(doc)
   doc:insert(1, 1, text:gsub("\r", ""):gsub("\n$", ""))
   doc:set_selection(table.unpack(sel))
 
-  doc:clean()
+  -- prevent autoreload from kicking in to keep undo history
+  doc.skip_format = true
+  doc:save()
 end
 
 ---Split a string by the given delimeter
@@ -220,29 +225,33 @@ local function command_exists(command)
   return false
 end
 
--- formats current document and reload it to show changes
--- to reload after formatting, set 'reload' to true
-local function format_current_doc(reload)
-  local current_doc = core.active_view.doc
-  if not current_doc or not current_doc.abs_filename then
+---Formats current document in place and reloads it.
+---@param doc? core.docview | core.doc
+local function format_doc(doc)
+  doc = doc or core.active_view.doc
+  if doc:extends(DocView) then doc = doc.doc end
+  if not doc or not doc.abs_filename then
     core.error("no doc is open")
     return
   end
 
-  local formatter = get_formatter(current_doc.filename)
+  local formatter = get_formatter(doc.filename)
   if formatter == nil then
-    core.error("no formatter found for " .. current_doc.filename)
+    core.error("no formatter found for " .. doc.filename)
     return
   end
 
-  local filename = current_doc.abs_filename
-  filename = "\"" .. filename .. "\"" -- add quotes to filename
+  local filename = doc.abs_filename
 
   local args = formatter.args
   local executable = formatter.command[1]
 
   if config.plugins.formatter[formatter.name] then
-    if config.plugins.formatter[formatter.name].args then
+    if
+      config.plugins.formatter[formatter.name].args
+      and
+      config.plugins.formatter[formatter.name].args:gsub("%s", "") ~= ""
+    then
       args = config.plugins.formatter[formatter.name].args
     end
     if config.plugins.formatter[formatter.name].path then
@@ -258,36 +267,57 @@ local function format_current_doc(reload)
     return
   end
 
-  core.log("formatting " .. current_doc.filename .. " with " .. formatter.name)
-
   local command = table.pack(table.unpack(formatter.command))
   command[1] = executable
 
-  local cmd = table.concat(command, " ")
-  cmd = cmd:gsub("$FILENAME", filename) -- replace $FILENAME with filename
-  cmd = cmd:gsub("$ARGS", formatter.args or "") -- replace $ARGS with args
+  local cmd = {}
 
-  system.exec(cmd) -- all systems go
+  -- replace $FILENAME and $ARGS place holders
+  for _, arg in ipairs(command) do
+    if arg == "$FILENAME" then
+      table.insert(cmd, filename)
+    elseif arg == "$ARGS" then
+      if args then
+        for value in args:gmatch("([%S]+)") do
+          table.insert(cmd, value)
+        end
+      end
+    else
+      local result = arg:gsub("%$FILENAME", '"'..filename..'"')
+      table.insert(cmd, result)
+    end
+  end
 
-  if reload then reload_doc(core.active_view.doc) end
+  core.log("formatter command: %s", common.serialize(cmd, {pretty = true}))
+
+  core.log("formatting " .. doc.filename .. " with " .. formatter.name)
+
+  core.add_thread(function()
+    local p, errmsg = process.start(cmd)
+    if not p then
+      core.error("could not execute formatter '%s'\n%s", formatter.name, errmsg)
+      return
+    end
+    while not p:wait(0) do
+      coroutine.yield()
+    end
+    reload_doc(doc)
+  end)
 end
 
 local Doc_save = Doc.save
 Doc.save = function(self, ...)
   Doc_save(self, ...)
-  if config.plugins.formatter.format_on_save and get_formatter(self.filename) then
-    format_current_doc(true)
-    core.add_thread(function()
-      -- Wait at least 1 second before trying to reload the document
-      -- to let core Doc.save do its work
-      local current_time = os.time()
-      while current_time == os.time() do coroutine.yield() end
-      reload_doc(core.active_view.doc)
-    end)
+  if self.skip_format then
+     self.skip_format = nil
+  elseif
+    config.plugins.formatter.format_on_save and get_formatter(self.filename)
+  then
+    format_doc(self)
   end
 end
 
-command.add("core.docview", {["formatter:format-doc"] = format_current_doc})
+command.add("core.docview", {["formatter:format-doc"] = format_doc})
 
 keymap.add {["alt+shift+f"] = "formatter:format-doc"}
 
