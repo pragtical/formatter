@@ -26,6 +26,7 @@
 - [perltidy](https://github.com/perltidy/perltidy)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rubocop](https://github.com/rubocop/rubocop)
+- [ruff](https://docs.astral.sh/ruff/formatter)
 - [rustfmt](https://github.com/rust-lang/rustfmt)
 - [shformat](https://github.com/mvdan/sh)
 - [sql-formatter](https://github.com/sql-formatter-org/sql-formatter)
