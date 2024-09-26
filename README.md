@@ -24,6 +24,7 @@
 - [ocp-indent](https://github.com/OCamlPro/ocp-indent)
 - [ormolu](https://github.com/tweag/ormolu)
 - [perltidy](https://github.com/perltidy/perltidy)
+- [phpcbf](https://github.com/PHPCSStandards/PHP_CodeSniffer)
 - [prettier](https://github.com/prettier/prettier)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rubocop](https://github.com/rubocop/rubocop)
