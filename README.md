@@ -24,6 +24,7 @@
 - [ocp-indent](https://github.com/OCamlPro/ocp-indent)
 - [ormolu](https://github.com/tweag/ormolu)
 - [perltidy](https://github.com/perltidy/perltidy)
+- [prettier](https://github.com/prettier/prettier)
 - [qmlformat](https://github.com/qt/qtdeclarative)
 - [rubocop](https://github.com/rubocop/rubocop)
 - [ruff](https://docs.astral.sh/ruff/formatter)
