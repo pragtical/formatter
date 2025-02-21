@@ -4,7 +4,7 @@
       "id": "formatter",
       "name": "Formatter",
       "description": "Code formatter for various languages.",
-      "version": "0.6.1",
+      "version": "0.7.0",
       "mod_version": "3"
     }
   ]
