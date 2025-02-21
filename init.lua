@@ -102,8 +102,9 @@ local function matches_any(filename, patterns)
   for _, ptn in ipairs(patterns) do if filename:find(ptn) then return true end end
 end
 
--- returns the first formatter that matches, so beware if you
--- install multiple for the same file type
+---Returns the first formatter that matches, so beware if you
+---install multiple for the same file type
+---@return plugins.formatter.formatter?
 local function get_formatter(filename)
   local formatter = nil
   for _, v in pairs(formatters) do
@@ -120,8 +121,8 @@ local function get_formatter(filename)
   return formatter
 end
 
--- sometimes the autoreload plugin doesn't detect the file change so we
--- need our own reload_doc function to reload document after formatting it
+---Sometimes the autoreload plugin doesn't detect the file change, so we
+---need our own reload_doc function to reload document after formatting it.
 ---@param doc core.doc
 local function reload_doc(doc)
   local fp = io.open(doc.abs_filename, "r")
@@ -317,10 +318,50 @@ Doc.save = function(self, ...)
   end
 end
 
+---Formatter plugin public API.
+---@class plugins.formatter
+local formatter = {}
+
+---Register a new formatter.
+---@param f plugins.formatter.formatter
+function formatter.add_formatter(f)
+  table.insert(formatters, f)
+end
+
+---Modify a registered formatter configuration.
+---@param name string
+---@param options plugins.formatter.formatter
+---@return boolean modified
+function formatter.config(name, options)
+  local f = formatter.get(name)
+  if not f then return false end
+  for prop, value in pairs(options) do
+    f[prop] = value
+  end
+  return true
+end
+
+---Get a formatter by its name.
+---@param name string
+---@return plugins.formatter.formatter?
+function formatter.get(name)
+  for _, f in ipairs(formatters) do
+    if f.name == name then
+      return f
+    end
+  end
+end
+
+---Get the first formatter that matches the given filename and is enabled.
+---@param filename string
+---@return plugins.formatter.formatter?
+function formatter.get_by_filename(filename)
+  return get_formatter(filename)
+end
+
 command.add("core.docview", {["formatter:format-doc"] = format_doc})
 
 keymap.add {["alt+shift+f"] = "formatter:format-doc"}
 
-return {
-  add_formatter = function(formatter) table.insert(formatters, formatter) end
-}
+
+return formatter

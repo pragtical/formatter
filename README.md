@@ -49,14 +49,54 @@
     If you want to customize a formatter, you can do this from your `init.lua`
     script. Example:
 ```lua
-config.plugins.formatter.jsbeautify = {
+local formatter = require("plugins.formatter")
+
+formatter.config("jsbeautify", {
     -- Optionally disable this formmater
     enabled = false,
     -- Optionally set path of executable
     path = "/path/to/js-beautify",
     -- Set jsBeautify arguments to indent with spaces.
     args = "-r -s 4 -p -b end-expand"
-}
+})
+```
+
+4. You can also enable/disable and configure all available formatters from the
+   settings graphical interface on Plugins -> Formatter.
+
+## Formatter plugin public API
+
+```lua
+local formatter = require("plugins.formatter")
+
+---Represents a registered formatter.
+---@class plugins.formatter.formatter
+---@field name string
+---@field label string
+---@field enabled boolean?
+---@field file_patterns string[]
+---@field command string[]
+---@field args? string
+
+---Register a new formatter.
+---@param f plugins.formatter.formatter
+function formatter.add_formatter(f)
+
+---Modify a registered formatter configuration.
+---@param name string
+---@param options plugins.formatter.formatter
+---@return boolean modified
+function formatter.config(name, options)
+
+---Get a formatter by its name.
+---@param name string
+---@return plugins.formatter.formatter?
+function formatter.get(name)
+
+---Get the first formatter that matches the given filename and is enabled.
+---@param filename string
+---@return plugins.formatter.formatter?
+function formatter.get_by_filename(filename)
 ```
 
 ## Using the formatter
@@ -84,7 +124,7 @@ return {
 }
 ```
 
-### a few things to keep in mind
+### A few things to keep in mind
 - choose a unique file name
 - make sure to set a label
 - make sure to add it to the list in readme.md (and keep it alphabetical)
