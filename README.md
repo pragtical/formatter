@@ -19,6 +19,7 @@
 - [goimports](https://pkg.go.dev/golang.org/x/tools/cmd/goimports)
 - [html-beautify](https://www.npmjs.com/package/html-beautify)
 - [isort python formatter](https://pypi.org/project/isort/)
+- [janet-format](https://github.com/janet-lang/spork/blob/master/bin/janet-format)
 - [js-beautify](https://www.npmjs.com/package/js-beautify)
 - [juliaformat](https://github.com/domluna/JuliaFormatter.jl)
 - [luaformatter](https://github.com/Koihik/LuaFormatter)
