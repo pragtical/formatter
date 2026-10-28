@@ -143,6 +143,7 @@ local function reload_doc(doc)
   -- prevent autoreload from kicking in to keep undo history
   doc.skip_format = true
   doc:save()
+  core.redraw = true
 end
 
 ---Split a string by the given delimeter
